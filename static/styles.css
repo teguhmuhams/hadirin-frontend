@@ -204,22 +204,10 @@ nav #profil img {
 }
 
 .logout {
-	background-color: #d9d9d9;
 	border-radius: 20px;
 	margin: 0 28px;
 	position: absolute;
 	bottom: 20px;
-	width: 140px;
-	height: 30px;
-}
-
-.logout a {
-	padding-left: 25px;
-}
-
-.logout p {
-	margin: 4px;
-	font-size: 16px;
 }
 
 .sidenav img {
