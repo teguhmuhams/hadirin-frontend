@@ -1,8 +1,14 @@
 <script>
+	import { onMount } from 'svelte';
+
 	export let currentUser;
 	const apiUrl = import.meta.env.VITE_API_URL;
 
 	let courses = [];
+
+	onMount(async () => {
+		courses = await getCourses(currentUser);
+	});
 
 	async function getCourses(currentUser) {
 		const response = await fetch(
@@ -16,10 +22,8 @@
 			}
 		);
 		const data = await response.json();
-		courses = data.data;
+		return data.data;
 	}
-
-	getCourses(currentUser);
 </script>
 
 {#if currentUser && currentUser.student}
@@ -30,25 +34,27 @@
 <div id="mapel">
 	<div id="mapel">
 		<div class="row">
-			{#each courses as course}
-				<div class="col-sm-4">
-					<div class="card">
-						<div class="card-body">
-							<div>
-								<h5 class="card-title">{course.name}</h5>
-								<h4 class="card-text">{course.year}</h4>
-								<p class="card-text">
-									{course.grade.name.match(/[a-zA-Z]/g).join('')}
-								</p>
+			{#if courses}
+				{#each courses as course}
+					<div class="col-sm-4">
+						<div class="card">
+							<div class="card-body">
+								<div>
+									<h5 class="card-title">{course.name}</h5>
+									<h4 class="card-text">{course.year}</h4>
+									<p class="card-text">
+										{course.grade.name.match(/[a-zA-Z]/g).join('')}
+									</p>
+								</div>
+								<img src="/img/profil guru.png" alt="" />
 							</div>
-							<img src="/img/profil guru.png" alt="" />
+							<a href="/dashboard/attendances/{course.id}" class="btn btn-primary">Presensi</a>
 						</div>
-						<button class="btn btn-primary">Presensi</button>
 					</div>
-				</div>
-			{/each}
-			{#if courses.length == 0}
-				<p>No courses data.</p>
+				{/each}
+				{#if courses.length == 0}
+					<p>No courses data.</p>
+				{/if}
 			{/if}
 		</div>
 	</div>

@@ -192,7 +192,6 @@ nav #profil img {
 .sidenav {
 	height: 100vh;
 	width: 200px;
-	z-index: 1;
 	background-color: #fefefe;
 	border-right: solid 1px #d9d9d9;
 	overflow-x: hidden;
@@ -413,7 +412,7 @@ nav #profil img {
 	border-color: #d9d9d9;
 }
 
-#mapel button {
+#mapel a {
 	margin: 15px 70px;
 	background: rgba(50, 65, 93, 0.9);
 	font-style: normal;
@@ -573,7 +572,7 @@ nav #profil img {
 	padding-left: 6px;
 }
 
-#pertemuan button {
+#pertemuan .title {
 	font-size: 20px;
 	text-align: left;
 	color: #32415d;
